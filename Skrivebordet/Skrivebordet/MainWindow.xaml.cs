@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,15 +24,28 @@ namespace Skrivebordet
         public MainWindow()
         {
             InitializeComponent();
+            fileNameList.ItemsSource = ImageHandler.ImagePaths;
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "Images|*.jpg;*.jpeg;*.png;";
+            openFileDialog.ShowDialog();
+            
+            if (!string.IsNullOrWhiteSpace(openFileDialog.FileName))
+            {
+                ImageHandler.ImagePaths.Add(openFileDialog.FileName);
+            }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string imagePath = (string)fileNameList.Items[fileNameList.SelectedIndex];
+            if (!string.IsNullOrWhiteSpace (imagePath))
+            {
+                ImageHandler.ImagePaths.Remove(imagePath);
+            }
         }
     }
 }
