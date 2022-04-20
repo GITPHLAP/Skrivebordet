@@ -1,49 +1,68 @@
 ﻿using System;
+using System.Timers;
 
 namespace Skrivebordet
 {
-    public class Scheduler
+    public class BackgroundScheduler
     {
-        private static DateTime lastTime = DateTime.Now;
-
+        public static DateTime NextTime { get; set; } = DateTime.Now;
         public static bool IsHourly {get; set;}
         public static bool IsDaily { get; set; }
         public static bool IsWeekly { get; set; }
 
-        public static DateTime? GetNextTime()
+        public static void Start()
+        {
+            Timer timer = new Timer(10000);
+            timer.Elapsed += OnTick;
+            timer.Start();
+        }
+
+        private static void OnTick(object sender, ElapsedEventArgs e)
+        {
+            if (ShouldChangeBackground())
+            {
+                string imagePath = ImageHandler.GetNextImagePath();
+                if (!string.IsNullOrWhiteSpace(imagePath))
+                {
+                    BackgroundChanger.ChangeWallpaper(imagePath);
+                }
+            }
+        }
+
+        public static bool ShouldChangeBackground()
         {
             DateTime currentTime = DateTime.Now;
             if (IsHourly)
             {
                 DateTime hourNextTime = new(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, 0, 0);
                 hourNextTime = hourNextTime.AddHours(1);
-                if (hourNextTime.Hour != lastTime.Hour)
+                if (hourNextTime.Hour != NextTime.Hour)
                 {
-                    lastTime = hourNextTime;
-                    return hourNextTime;
+                    NextTime = hourNextTime;
+                    return true;
                 }
             }
             else if (IsDaily)
             {
                 DateTime dailyNextTime = new(currentTime.Year, currentTime.Month, currentTime.Day, 0, 0, 0);
                 dailyNextTime = dailyNextTime.AddDays(1);
-                if (dailyNextTime.Day != lastTime.Day)
+                if (dailyNextTime.Day != NextTime.Day)
                 {
-                    lastTime = dailyNextTime;
-                    return dailyNextTime;
+                    NextTime = dailyNextTime;
+                    return true;
                 }
             }
             else if (IsWeekly)
             {
                 DateTime weeklyNextTime = new(currentTime.Year, currentTime.Month, currentTime.Day, 23, 59, 59);
                 weeklyNextTime = weeklyNextTime.AddDays(((int)DayOfWeek.Sunday - (int)currentTime.DayOfWeek + 7) % 7);
-                if (weeklyNextTime != lastTime)
+                if (weeklyNextTime != NextTime)
                 {
-                    lastTime = weeklyNextTime;
-                    return weeklyNextTime;
+                    NextTime = weeklyNextTime;
+                    return true;
                 }
             }
-            return null;
+            return false;
         }
     }
 

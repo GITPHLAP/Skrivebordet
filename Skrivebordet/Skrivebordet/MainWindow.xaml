@@ -43,13 +43,15 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <CheckBox Content="time" x:Name="hourCheckBox">
+                <CheckBox Content="time" x:Name="hourCheckBox" Click="hourCheckBox_Click">
                 </CheckBox>
                 <CheckBox Content="dagligt"
-                          x:Name="dailyCheckBox">
+                          x:Name="dailyCheckBox"
+                          Click="dailyCheckBox_Click">
                 </CheckBox>
                 <CheckBox Content="ugentligt"
-                          x:Name="weeklyCheckbox">
+                          x:Name="weeklyCheckbox"
+                          Click="weeklyCheckbox_Click">
                 </CheckBox>
                 <Label x:Name="nextTimeLabel" />
             </StackPanel>

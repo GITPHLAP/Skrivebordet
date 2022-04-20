@@ -8,7 +8,9 @@ namespace Skrivebordet
 {
     public class ImageHandler
     {
+        private static int currentImgIndex = 0;
         private const string JsonPath = "imagepaths.json";
+
         public static ObservableCollection<string> ImagePaths { get; set; } = new();
 
         public static void Save()
@@ -26,6 +28,16 @@ namespace Skrivebordet
                     ?? new List<string>();
                 ImagePaths = new ObservableCollection<string>(imagePaths);
             }
+        }
+
+        public static string GetNextImagePath()
+        {
+            if (ImagePaths.Count > 0)
+            {
+                currentImgIndex = (currentImgIndex + 1) % ImagePaths.Count;
+                return ImagePaths[currentImgIndex];
+            }
+            return string.Empty;
         }
     }
 }

@@ -27,27 +27,6 @@ namespace Skrivebordet
         {
             InitializeComponent();
             fileNameList.ItemsSource = ImageHandler.ImagePaths;
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += OnTick;
-            timer.Start();
-        }
-
-        private void OnTick(object? sender, EventArgs e)
-        {
-
-            DateTime? nexttime = Scheduler.GetNextTime();
-
-            if (nexttime != null)
-            {
-                nextTimeLabel.Content = nexttime.ToString();
-                if (ImageHandler.ImagePaths.Count > 0)
-                {
-                    BackgroundChanger.ChangeWallpaper(ImageHandler.ImagePaths[currentImgIndex]);
-
-                    currentImgIndex = (currentImgIndex + 1) % ImageHandler.ImagePaths.Count;
-                }                
-            }
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
@@ -69,6 +48,21 @@ namespace Skrivebordet
             {
                 ImageHandler.ImagePaths.Remove(imagePath);
             }
+        }
+
+        private void dailyCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundScheduler.IsDaily = dailyCheckBox.IsChecked ?? false;
+        }
+
+        private void weeklyCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundScheduler.IsWeekly = weeklyCheckbox.IsChecked ?? false;
+        }
+
+        private void hourCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundScheduler.IsHourly = hourCheckBox.IsChecked ?? false;
         }
     }
 }

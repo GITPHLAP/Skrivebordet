@@ -27,7 +27,6 @@ C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\bin\De
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\bin\Debug\net5.0-windows\Skrivebordet.dll
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\bin\Debug\net5.0-windows\ref\Skrivebordet.dll
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\bin\Debug\net5.0-windows\Skrivebordet.pdb
-C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\obj\Debug\net5.0-windows\Skrivebordet.csproj.AssemblyReference.cache
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\jonas.hansen\Source\Repos\Skrivebordet\Skrivebordet\Skrivebordet\obj\Debug\net5.0-windows\Skrivebordet_MarkupCompile.cache
