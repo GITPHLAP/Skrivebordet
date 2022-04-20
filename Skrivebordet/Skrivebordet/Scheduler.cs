@@ -4,13 +4,13 @@ namespace Skrivebordet
 {
     public class Scheduler
     {
-        private DateTime lastTime = DateTime.Now;
+        private static DateTime lastTime = DateTime.Now;
 
-        public bool IsHourly = true;
-        public bool IsDaily = false;
-        public bool IsWeekly = false;
+        public static bool IsHourly {get; set;}
+        public static bool IsDaily { get; set; }
+        public static bool IsWeekly { get; set; }
 
-        public DateTime? GetNextTime()
+        public static DateTime? GetNextTime()
         {
             DateTime currentTime = DateTime.Now;
             if (IsHourly)

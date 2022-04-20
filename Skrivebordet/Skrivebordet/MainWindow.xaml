@@ -51,7 +51,10 @@
                 <CheckBox Content="ugentligt"
                           x:Name="weeklyCheckbox">
                 </CheckBox>
+                <Label x:Name="nextTimeLabel" />
             </StackPanel>
+            
+            
         </Grid>
     </Grid>
 </Window>

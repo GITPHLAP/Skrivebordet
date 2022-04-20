@@ -22,6 +22,7 @@ namespace Skrivebordet
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int currentImgIndex = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +36,18 @@ namespace Skrivebordet
         private void OnTick(object? sender, EventArgs e)
         {
 
+            DateTime? nexttime = Scheduler.GetNextTime();
+
+            if (nexttime != null)
+            {
+                nextTimeLabel.Content = nexttime.ToString();
+                if (ImageHandler.ImagePaths.Count > 0)
+                {
+                    BackgroundChanger.ChangeWallpaper(ImageHandler.ImagePaths[currentImgIndex]);
+
+                    currentImgIndex = (currentImgIndex + 1) % ImageHandler.ImagePaths.Count;
+                }                
+            }
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
