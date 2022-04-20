@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Skrivebordet/1.0.0": {
+        "runtime": {
+          "Skrivebordet.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Skrivebordet/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
