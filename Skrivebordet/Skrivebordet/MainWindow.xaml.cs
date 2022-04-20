@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Skrivebordet
 {
@@ -25,6 +26,15 @@ namespace Skrivebordet
         {
             InitializeComponent();
             fileNameList.ItemsSource = ImageHandler.ImagePaths;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += OnTick;
+            timer.Start();
+        }
+
+        private void OnTick(object? sender, EventArgs e)
+        {
+
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
